@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/jquery-3.1.1.js"></script>
+<script>
+$(function(){
+	$("#btn").bind("click",myFun1=function(){
+		$("#test").append("<p>我绑定函数1</p>");
+		}).bind("click",myFun2=function(){
+		$("#test").append("<p>我绑定函数2</p>");
+			}).bind("click",myFun3=function(){
+		$("#test").append("<p>我绑定函数3</p>");
+				})
+	
+	$("#delTwo").click(function(){
+		$("#btn").unbind("click",myFun2)
+		})
+	})
+////////////////////////////////////
+ $(function(){
+	$("div").bind("click.plugin",function(){
+	       $("body").append("<p>click事件</p>");
+	});
+	$("div").bind("mouseover.plugin", function(){
+	       $("body").append("<p>mouseover事件</p>");
+	});
+	$("div").bind("dblclick", function(){
+		   $("body").append("<p>dblclick事件</p>");
+	});
+	$("button").click(function() {
+		$("div").unbind(".plugin");  
+	})
+  })
+
+</script>
+</head>
+
+<body>
+<button id="btn">点击我</button>
+<div id="test"></div>
+<button id="delTwo">删除第二个事件</button> 
+
+<div>test.</div>
+<button >根据命名空间，删除事件</button>
+
+</body>
+</html>
