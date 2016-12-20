@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;}	
+body { font-size: 13px; line-height: 130%; padding: 60px; }
+#content { width: 220px; border: 1px solid #0050D0;background: #96E555 }
+span { width: 200px; margin: 10px; background: #666666; cursor: pointer;color:white;display:block;}
+p {width:200px;background:#888;color:white;height:16px;}
+
+</style>
+<script src="js/jquery-3.1.1.js"></script>
+<script>
+//事件冒泡，并阻止
+$(function(){
+	$("span").bind("click",function(event){  //添加了一个事件对象
+		var txt=$("#msg").html()+"<p>内层span元素被点击。</p>";
+		$("#msg").html(txt);
+		event.stopPropagation();
+		})
+		
+	$("#content").bind("click",function(event){
+		var txt=$("#msg").html()+"<p>外层div元素被点击。</p>";
+		$("#msg").html(txt);
+		event.stopPropagation();
+		})
+		
+	$("body").bind("click",function(event){
+		var txt=$("#msg").html()+"<p>body元素被点击。</p>";
+		$("#msg").html(txt);
+		event.stopPropagation();
+		})
+	})
+////////////////////////////////////////////
+//阻止元素的默认行为
+$(function(){
+	$("#sub").bind("click",function(event){
+		var username=$("#username").val();
+		if(username==""){		
+			var txt="<p>用户名不能为空</p>"
+			$("#msg2").html(txt);
+			return false//阻止默认行为
+			}
+		})
+	})
+
+$(function(){
+	$("a[href='http://google.com']").click(function(event){
+		var tg=event.target
+		alert(tg.href);
+		return false;
+		})
+	})
+</script>
+</head>
+
+<body>
+<div id="content">
+	外层div元素
+    <span>内层span元素</span>
+	外层div元素
+</div>
+<div id="msg"></div>
+ <br/>
+<form action="test.html">
+	用户名：<input type="text" id="username">
+    <br/>
+    <input type="submit" value="提交" id="sub">
+</form>
+<div id="msg2"></div>
+<a href="http://google.com">链接</a>
+</body>
+</html>
