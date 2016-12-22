@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/jquery-3.1.1.js"></script>
+<script>
+//文本框得焦和失焦
+$(function(){
+	$(":input").focus(function(){
+		$(this).addClass("focus")
+		}).blur(function(){
+			$(this).removeClass("focus")
+			})
+	})
+////////////////////////////////////////
+//文本域高度变化
+$(function(){
+	$(".bigger").click(function(){
+		if(!$("#comment").is(":animated")){
+		if($("#comment").height()<500){
+			$("#comment").animate({height:"+=50"},400)
+				}
+			}
+		})
+	$(".smaller").click(function(){
+		if(!$("#comment").is(":animated")){
+		if($("#comment").height()>100){
+			$("#comment").animate({height:"-=50"},400)
+				}
+			}
+		})
+	})
+////////////////////////////////////////
+//文本域内容滚动
+$(function(){
+	$(".up").click(function(){
+		if(!$("#comment2").is(":animated")){
+			$("#comment2").animate({scrollTop:"-=50"},400)
+			}
+		})
+	$(".down").click(function(){
+		if(!$("#comment2").is(":animated")){
+			$("#comment2").animate({scrollTop:"+=50"},400)
+			}
+		})
+	})
+</script>
+<style>
+.focus{ border:1px solid #f00; background-color:#fcc;}
+</style>
+</head>
+
+<body>
+<form action="#" method="post" id="regForm">
+	<fieldset>
+    	<legend>个人信息</legend>
+        <div>
+        	<label for="username">名称：</label>
+            <input id="username" type="text">
+        </div>
+        <div>
+        	<label for="pass">密码：</label>
+            <input id="pass" type="password">
+        </div>
+        <div>
+        	<label for="msg">详细信息：</label>
+            <textarea id="msg"></textarea>
+        </div>
+    </fieldset>
+</form>
+<br/>
+<form>
+	<div class="msg">
+    	<div class="msg_caption">
+        	<span class="bigger" style=" background-color:#666; color:#FFF; display:inline-block; width:40px; text-align:center;">放大</span>
+            <span class="smaller" style=" background-color:#666; color:#FFF; display:inline-block; width:40px; text-align:center;">缩小</span>
+        </div>
+        <div>
+        	<textarea id="comment" rows="8" cols="20" style="border:1px solid #000;">多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.</textarea>
+        </div>
+    </div>
+</form>
+<br/>
+<form>
+	<div class="msg">
+    	<div class="msg_caption">
+        	<span class="up" style=" background-color:#666; color:#FFF; display:inline-block; width:40px; text-align:center;">向上</span>
+            <span class="down" style=" background-color:#666; color:#FFF; display:inline-block; width:40px; text-align:center;">向下</span>
+        </div>
+        <div>
+        	<textarea id="comment2" rows="8" cols="20" style="border:1px solid #000;">多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.</textarea>
+        </div>
+    </div>
+</form>
+</body>
+</html>
