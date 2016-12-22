@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link href="style/视频展示效果.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-3.1.1.js"></script>
+<script>
+$(function(){
+	//全局变量
+	var page=1;    //当前第一页
+	var i=4;       //一页放4张图
+	var $vContWidth=$("div.v_content").width()
+	var $vContUl=$("div.v_content ul")
+	var $vContLi=$("div.v_content ul li")
+	var len=$vContLi.length //所有li(图片)的长度
+	
+	var pageCount=len/4;   <!--总的页面数-->     
+	//下一张
+	$("span.next").click(function(){
+		if(!$vContUl.is(":animated")){
+			if(page==pageCount){
+				$vContUl.animate({left:"0px"},"noraml");
+				page=1
+				}else{
+				$vContUl.animate({left:'-='+$vContWidth},"noraml");
+				page++;
+				}
+			}
+		$("div.highlight span").eq(page-1).addClass("current").siblings().removeClass("current")
+		})
+	
+		//上一张
+		$("span.prev").click(function(){
+		if(!$vContUl.is(":animated")){
+			if(page==1){
+				$vContUl.animate({left:'-='+$vContWidth*3},"noraml");
+				page=pageCount
+				}else{
+				$vContUl.animate({left:'+='+$vContWidth},"noraml");
+				page--;
+				}
+			}
+			//蓝色圆点切换
+		$("div.highlight span").eq(page-1).addClass("current").siblings().removeClass("current")
+		})
+	})
+</script>
+</head>
+
+<body>
+<div id="wrap">
+  <div class="v_caption">
+   	<h2 class="cartoon" title="卡通动漫">卡通动漫</h2>
+   	<div class="highlight">
+   	  <span class="current">1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+    </div>
+    <div class="change_btn">
+        <span class="prev">上一页</span>
+        <span class="next">下一页</span>
+    </div>
+    <a class="more" href="#">更多</a>
+  </div>
+  <div class="v_content">
+  	<ul>
+    	<li>
+        	<a href="#"><img src="img/01.jpg"></a>
+            <h4><a href="#">海贼王</a></h4>
+            <span>播放量:<em>28,276</em></span>
+        </li>
+        <li>
+        	<a href="#"><img src="img/01.jpg"></a>
+            <h4><a href="#">海贼王</a></h4>
+            <span>播放量:<em>28,276</em></span>
+        </li>
+        <li>
+        	<a href="#"><img src="img/01.jpg"></a>
+            <h4><a href="#">海贼王</a></h4>
+            <span>播放量:<em>28,276</em></span>
+        </li>
+        <li>
+        	<a href="#"><img src="img/01.jpg"></a>
+            <h4><a href="#">海贼王</a></h4>
+            <span>播放量:<em>28,276</em></span>
+        </li>
+        <li>
+        	<a href="#"><img src="img/02.jpg"></a>
+            <h4><a href="#">哆啦A梦</a></h4>
+            <span>播放量:<em>33,326</em></span>
+        </li>
+        <li>
+        	<a href="#"><img src="img/02.jpg"></a>
+            <h4><a href="#">哆啦A梦</a></h4>
+            <span>播放量:<em>33,326</em></span>
+        </li>
+        <li>
+        	<a href="#"><img src="img/02.jpg"></a>
+            <h4><a href="#">哆啦A梦</a></h4>
+            <span>播放量:<em>33,326</em></span>
+        </li>
+        <li>
+        	<a href="#"><img src="img/02.jpg"></a>
+            <h4><a href="#">哆啦A梦</a></h4>
+            <span>播放量:<em>33,326</em></span>
+        </li>
+        <li>
+        	<a href="#"><img src="img/03.jpg"></a>
+            <h4><a href="#">火影忍者</a></h4>
+            <span>播放量:<em>51,126</em></span>
+        </li>
+         <li>
+        	<a href="#"><img src="img/03.jpg"></a>
+            <h4><a href="#">火影忍者</a></h4>
+            <span>播放量:<em>51,126</em></span>
+        </li>
+         <li>
+        	<a href="#"><img src="img/03.jpg"></a>
+            <h4><a href="#">火影忍者</a></h4>
+            <span>播放量:<em>51,126</em></span>
+        </li>
+         <li>
+        	<a href="#"><img src="img/03.jpg"></a>
+            <h4><a href="#">火影忍者</a></h4>
+            <span>播放量:<em>51,126</em></span>
+        </li>
+         <li>
+        	<a href="#"><img src="img/04.jpg"></a>
+            <h4><a href="#">七龙珠</a></h4>
+            <span>播放量:<em>48,526</em></span>
+        </li>
+         <li>
+        	<a href="#"><img src="img/04.jpg"></a>
+            <h4><a href="#">七龙珠</a></h4>
+            <span>播放量:<em>48,526</em></span>
+        </li>
+         <li>
+        	<a href="#"><img src="img/04.jpg"></a>
+            <h4><a href="#">七龙珠</a></h4>
+            <span>播放量:<em>48,526</em></span>
+        </li>
+         <li>
+        	<a href="#"><img src="img/04.jpg"></a>
+            <h4><a href="#">七龙珠</a></h4>
+            <span>播放量:<em>48,526</em></span>
+        </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
