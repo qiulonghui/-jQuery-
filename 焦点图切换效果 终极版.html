@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{ background-color:#666;}
+*{ padding:0; margin:0;}
+ul{ list-style:none;}
+.play{ width:420px; height:352px; margin:50px auto;}
+.big_pic{ width:420px; height:352px; position:relative;}
+.big_pic li{ float:left; position:absolute; top:0; left:0; overflow:hidden;}
+.prev{ display:inline-block; width:60px; height:60px; background-color:#F63; position:absolute; left:5px; top:128px; z-index:2000; line-height:60px; text-align:center; filter:alpha(opacity:0); opacity:0;}
+.next{ display:inline-block; width:60px; height:60px; background-color:#F63; position:absolute; right:5px; top:128px; z-index:2000; line-height:60px; text-align:center; filter:alpha(opacity:0); opacity:0;}
+.bg{ width:420px; height:50px; background-color:#000; filter:alpha(opacity:0.7); opacity:0.7; position:absolute; bottom:0; z-index:500;}
+.text{ position:absolute; left:10px; bottom:15px; z-index:600;}
+.length{position:absolute; right:10px; bottom:15px; z-index:600;}
+.small_pic{ overflow:hidden; position:absolute; left:0;}
+.small_pic li{ float:left; padding-left:8px;}
+.small_picwrap{ height:116px; overflow:hidden;background-color:#03F; position:relative; }
+.mark_left{ position:absolute; left:0; top:0; width:210px; height:352px; background-color:red; z-index:1500; filter:alpha(opacity:0); opacity:0;}
+.mark_right{ position:absolute; right:0; top:0; width:210px; height:352px; background-color:blue; z-index:1500; filter:alpha(opacity:0); opacity:0;}
+
+</style>
+<script src="js/move.js"></script>
+</head>
+
+<body>
+<div id="playimages" class="play">
+	<ul class="big_pic">
+    	<span class="prev">&lt;&lt;</span>
+        <span class="next">&gt;&gt;</span>
+        
+        <div class="text">加载图片说明</div>
+        <div class="length">计算图片数量</div>
+        <div class="mark_left"></div>
+        <div class="mark_right"></div>
+        <div class="bg"></div>
+        
+        <div class="bli_wrap">
+            <li style="z-index:1;"><img src="img/Jimu 低级版04.jpg" width="420"></li>
+            <li><img src="img/Jimu 高级版04.jpg" width="420"></li>
+            <li><img src="img/Jimu宝宝-155×208.jpg" width="420"></li>
+            <li><img src="img/Jimu企鹅-155×208.jpg" width="420"></li>
+            <li><img src="img/Jimu人形机器人-155×208.jpg" width="420"></li>
+            <li><img src="img/Jimu犀牛-155×208.jpg" width="420"></li>
+        </div>
+    </ul>
+    <div class="small_picwrap">
+    	<ul class="small_pic">
+        	<li><img src="img/Jimu 低级版04.jpg" width="130"></li>
+            <li><img src="img/Jimu 高级版04.jpg" width="130"></li>
+            <li><img src="img/Jimu宝宝-155×208.jpg" width="130"></li>
+            <li><img src="img/Jimu企鹅-155×208.jpg" width="130"></li>
+            <li><img src="img/Jimu人形机器人-155×208.jpg" width="130"></li>
+            <li><img src="img/Jimu犀牛-155×208.jpg" width="130"></li>
+        </ul>
+    </div>
+</div>
+<script>
+//箭头出现
+	var oplayDiv=document.getElementById("playimages");
+	var omarkL=oplayDiv.getElementsByClassName("mark_left")[0];
+	var omarkR=oplayDiv.getElementsByClassName("mark_right")[0];
+	var oprev=oplayDiv.getElementsByClassName("prev")[0];
+	var onext=oplayDiv.getElementsByClassName("next")[0];
+	var oSmallPicWrap=document.getElementsByClassName("small_picwrap")[0];
+	var oSmallPic=oSmallPicWrap.getElementsByClassName("small_pic")[0];
+	var aSmallLi=oSmallPic.getElementsByTagName("li");
+	var oBigUl=document.getElementsByClassName("big_pic")[0];
+	var aBigLi=oBigUl.getElementsByTagName("li");
+	var oBliWrap=document.getElementsByClassName("bli_wrap")[0];
+	var nowZindex=2;
+	var now=0;
+	//显示箭头
+	function displayFX(a,b){
+		a.onmouseover=b.onmouseover=function(){
+			startMove(a,{opacity:100})
+		}
+		a.onmouseout=b.onmouseout=function(){
+		startMove(a,{opacity:0})
+		}	
+	}
+	displayFX(oprev,omarkL)
+	displayFX(onext,omarkR)
+	
+	//小图滚动
+	
+	oSmallPic.innerHTML+=oSmallPic.innerHTML
+	oSmallPic.style.width=aSmallLi[0].offsetWidth*aSmallLi.length+"px";
+	var time1=setInterval(move,30);
+	function move(){
+		if(oSmallPic.offsetLeft<=-oSmallPic.offsetWidth/2){
+		oSmallPic.style.left=0;
+		}
+		oSmallPic.style.left=oSmallPic.offsetLeft-2+"px"
+		}
+		
+	 oSmallPicWrap.onmouseover=function(){
+		 clearInterval(time1)
+		 }
+	 oSmallPicWrap.onmouseout=function(){
+		time1=setInterval(move,30)
+		 }		
+		
+	//大图切换
+	oBliWrap.innerHTML+=oBliWrap.innerHTML;
+	for(var i=0; i<aSmallLi.length; i++){
+		aSmallLi[i].index=i;
+		 aSmallLi[i].onclick=function(){
+			 aBigLi[this.index].style.zIndex=nowZindex++;
+			 if(this.index==now){
+				 return
+				 }
+			 now=this.index//同一张图片只执行一次，除非切换过后；
+			 aBigLi[this.index].style.height=0;
+			 startMove(aBigLi[this.index],{height:352})
+			 clearInterval(timer2);//点击小图后，自动下一张定时器清除。
+			 timer2=setInterval(next,6000)
+			 }
+		}
+	
+	//上一张与下一张
+	onext.onclick=function(){
+		now++;
+		if(now>aBigLi.length-1){
+			now=0;
+			}
+		aBigLi[now].style.zIndex=nowZindex++;
+		aBigLi[now].style.height=0;
+		startMove(aBigLi[now],{height:352})
+		clearInterval(timer2);//点击小图后，自动下一张定时器清除。
+		timer2=setInterval(next,6000)
+		}	
+	oprev.onclick=function(){
+		now--;
+		if(now<0){
+			now=aBigLi.length-1;
+			}
+		aBigLi[now].style.zIndex=nowZindex++;
+		aBigLi[now].style.height=0;
+		startMove(aBigLi[now],{height:352})
+		clearInterval(timer2);//点击小图后，自动下一张定时器清除。
+		timer2=setInterval(next,6000)
+		}
+	//自动下一张
+	function next(){
+		now++;
+		if(now>aBigLi.length-1){
+			now=0;
+			}
+		aBigLi[now].style.zIndex=nowZindex++;
+		aBigLi[now].style.height=0;
+		startMove(aBigLi[now],{height:352})
+		}
+	var timer2=setInterval(next,6000)
+	
+</script>
+
+</body>
+</html>
