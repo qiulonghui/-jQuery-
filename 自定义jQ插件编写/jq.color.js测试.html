@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-3.1.1.js"></script>
+<script src="jquery.color.js"></script> <!--引入自定jQ 插件-->
+<script>	
+$(function(){
+	alert($("div:eq(1)").color()+"\n返回字符串，证明此插件可用。")
+	alert($("div:eq(1)").color("red")+"\n返回object，证明得到的是jQuery对象。")
+	})
+</script>
+</head>
+
+<body>
+<div class="a">red</div>
+<div style="color:blue">blue</div>
+<div style=" color:green">green</div>
+<div style=" color:yellow">yellow</div>
+</body>
+</html>
