@@ -1,0 +1,80 @@
+<html lang="zn-ch">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font:12px "微软雅黑" ;
+	color:#3c3c3c;	
+}
+div{ width:280px;}
+h3 {
+    display: block;
+    margin-left:10px;
+	margin-top:5px;
+}
+	
+a{	text-decoration:none;
+	color:inherit;
+	display:block;
+	width:70px;
+	height:70px;
+	text-align:center;
+	position:relative;
+	overflow:hidden;
+	float:left;
+}
+a:hover,h3:hover{ color:#f40;
+}
+img{ position: absolute;
+     top: 10px;
+     left: 20px;
+   	 opacity:1;
+	}
+p{
+	margin-top: 43px;
+}
+</style>
+<script src="js/move.js"></script>
+<script>
+window.onload=function(){
+	var mya=document.getElementsByTagName("a");
+	for(var i=0;i<mya.length;i++){
+		mya[i].onmouseenter=function(){
+			var tp=this.getElementsByTagName("img")[0]
+			startMove(tp,{top:0,opacity:0},function(){
+				tp.style.top=20+"px"
+				startMove(tp,{top:10,opacity:100})
+				})
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+<div>
+<h3>APP下载</h3>
+<a href="#"><i><img src="img/ailitravel.jpg" height="30" width="30"/></i><p>阿里旅行</p></a>
+<a href="#"><i><img src="img/alimovie.jpg"height="30" width="30" /></i><p>淘电影</p></a>
+<a href="#"><i><img src="img/alipay.jpg" height="30" width="30"/></i><p>支付宝</p></a>
+<a href="#"><i><img src="img/ddc.jpg" height="30" width="30"/></i><p>点点虫</p></a>
+<a href="#"><i><img src="img/gdmap.jpg" height="30" width="30"/></i><p>高德地图</p></a>
+<a href="#"><i><img src="img/mayijf.jpg" height="30" width="30" /></i><p>蚂蚁金服</p></a>
+<a href="#"><i><img src="img/taobao.jpg" height="30" width="30" /></i><p>手机淘宝</p></a>
+<a href="#"><i><img src="img/tianmao.jpg" height="30" width="30"/></i><p>天猫</p></a>
+<a href="#"><i><img src="img/uc.jpg" height="30" width="30"/></i><p>UC浏览器</p></a>
+<a href="#"><i><img src="img/wx.jpg" height="30" width="30"/></i><p>旺信</p></a>
+<a href="#"><i><img src="img/xianyu.jpg" height="30" width="30"/></i><p>闲鱼</p></a>
+<a href="#"><i><img src="img/youku.jpg" height="30" width="30"/></i><p>优酷</p></a>
+</div>
+</body>
+</html>
+
+
+
+
